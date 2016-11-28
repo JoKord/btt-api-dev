@@ -13,6 +13,7 @@ function sql(file){
         // we have variable 'schema' in each SQL (as an example);
         params: {
             //schema: 'public' // replace ${schema~} with "public"
+            schema: 'dev'
         }
     };
     return new QueryFile(fullPath, options);
@@ -39,12 +40,7 @@ function sql(file){
 // diverse example here, but you may just as well put all of your queries into SQL files.
 
 module.exports = {
-	example: {
-		findOne: sql('example/findOne.sql'),
-        findAll: sql('example/findAll.sql'),
-        insertOne: sql('example/insertOne.sql'),
-        deleteOne: sql('example/deleteOne.sql'),
-        updateOne: sql('example/updateOne.sql'),
-        patchOne: require(path.join(__dirname, 'example/patchOne'))
+	percursos: {
+		find: sql('percursos/find.sql')
     },
 };
