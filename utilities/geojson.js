@@ -10,10 +10,16 @@ module.exports = {
 	isLineString: (req, res, next) => {
 		gjval.isGeoJSONObject(res.locals.data, function(valid, err){
 			if(!valid) return next(err);
-			for(let feature of res.locals.data.features){
-				gjval.isLineString(feature.geometry, function(valid, err){
+			if(res.locals.data.hasOwnProperty('features')){
+				for(let feature of res.locals.data.features){
+					gjval.isLineString(feature.geometry, function(valid, err){
+						if(!valid) return next(err);
+					});	
+				}
+			}else{
+				gjval.isLineString(res.locals.data.geometry, function(valid, err){
 					if(!valid) return next(err);
-				});	
+				});
 			}
 			return next();
 		});

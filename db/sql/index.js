@@ -41,6 +41,7 @@ function sql(file){
 
 module.exports = {
 	percursos: {
-		find: sql('percursos/find.sql')
+		find: sql('percursos/find.sql'),
+        findOne: sql('percursos/findOne.sql')
     },
 };
