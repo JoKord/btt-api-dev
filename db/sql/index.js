@@ -44,6 +44,7 @@ module.exports = {
 		find: sql('percursos/find.sql'),
         findOne: sql('percursos/findOne.sql'),
         save: sql('percursos/save.sql'),
+        update: sql('percursos/update.sql'),
         remove: sql('percursos/remove.sql')
     },
 };

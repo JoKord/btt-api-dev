@@ -6,39 +6,7 @@ const gjVal = require('geojson-validation');
 
 describe('Percursos EndPoints', function () {
 	let cod_percurso;
-	describe('GET / - Percursos', function() {
-		it('Response Status 200', function(done){
-			request.get("/api/percursos").expect(200, done);
-		});
-		it('Response Type JSON', function(done){
-			request.get("/api/percursos").expect('Content-Type', /json/).expect(200, done);
-		});
-		it('Is GeoJSON and LineString', function(done){
-			request.get("/api/percursos").expect(res => {
-				assert(gjVal.isGeoJSONObject(res.body), 'Response is Not GeoJSON.');
-				let features = res.body.features;
-				for(let index in features){
-					assert(gjVal.isLineString(features[index].geometry, 'Feature['+index+'] is not Valid.'));
-				}
-			}).expect(200, done);
-		});
-	});
-	describe('GET /:cod - Percursos', function(){
-		it('Response Status 200', function(done){
-			request.get("/api/percursos/DNVEDVP7ER9I").expect(200, done);
-		});
-		it('Response Type JSON', function(done){
-			request.get("/api/percursos/DNVEDVP7ER9I").expect('Content-Type', /json/).expect(200, done);
-		});
-		it('Is GeoJSON and LineString', function(done){
-			request.get("/api/percursos/DNVEDVP7ER9I").expect(res => {
-				assert(gjVal.isGeoJSONObject(res.body), 'Response is Not GeoJSON.');
-				assert(gjVal.isLineString(res.body.geometry, 'Feature is not Valid.'));			
-			}).expect(200, done);
-		});
-	});
-	describe('POST / - Percursos', function() {
-		let percurso = {
+	let percurso = {
 			type: 'Feature',
   			geometry: 
    				{ 
@@ -74,6 +42,38 @@ describe('Percursos EndPoints', function () {
      				id_utilizador: 1 // TODO - Automático
      			} 
      		};
+	describe('GET / - Percursos', function() {
+		it('Response Status 200', function(done){
+			request.get("/api/percursos").expect(200, done);
+		});
+		it('Response Type JSON', function(done){
+			request.get("/api/percursos").expect('Content-Type', /json/).expect(200, done);
+		});
+		it('Is GeoJSON and LineString', function(done){
+			request.get("/api/percursos").expect(res => {
+				assert(gjVal.isGeoJSONObject(res.body), 'Response is Not GeoJSON.');
+				let features = res.body.features;
+				for(let index in features){
+					assert(gjVal.isLineString(features[index].geometry, 'Feature['+index+'] is not Valid.'));
+				}
+			}).expect(200, done);
+		});
+	});
+	describe('GET /:cod - Percursos', function(){
+		it('Response Status 200', function(done){
+			request.get("/api/percursos/DNVEDVP7ER9I").expect(200, done);
+		});
+		it('Response Type JSON', function(done){
+			request.get("/api/percursos/DNVEDVP7ER9I").expect('Content-Type', /json/).expect(200, done);
+		});
+		it('Is GeoJSON and LineString', function(done){
+			request.get("/api/percursos/DNVEDVP7ER9I").expect(res => {
+				assert(gjVal.isGeoJSONObject(res.body), 'Response is Not GeoJSON.');
+				assert(gjVal.isLineString(res.body.geometry, 'Feature is not Valid.'));			
+			}).expect(200, done);
+		});
+	});
+	describe('POST / - Percursos', function() {
 		it('Return Location and Resource as GeoJSON', function(done){
 			request.post("/api/percursos").send(percurso)
 				.expect('Location', /\/api\/percursos\/[A-Z0-9]*/)
@@ -81,14 +81,33 @@ describe('Percursos EndPoints', function () {
 					assert(gjVal.isGeoJSONObject(res.body), 'Response is Not GeoJSON.');
 					assert(gjVal.isLineString(res.body.geometry, 'Feature is not Valid.'));	
 					cod_percurso = res.body.properties.cod_percurso;
-					console.log("..:: Returned Percurso ::..")
-					console.log(res.body);
+					//console.log("..:: Returned Percurso ::..")
+					//console.log(res.body);
 				}).expect(201, done);
 		});	
+	});
+	describe('PUT /percursos/:cod', function () {
+		it('Update the Resource', function(done){
+			percurso.geometry.coordinates = [
+				[-7.74401324200568, 41.2961235262365],
+				[-7.74384896858675, 41.2970011741126],
+				[-7.74359343215729, 41.2973302890216],
+				[-7.74257128643948, 41.297645689251]
+			];
+			percurso.descricao = "Nova Descricao Para o Percurso";
+			percurso.cod_percurso = cod_percurso;
+			request.put("/api/percursos/"+cod_percurso).send(percurso)
+				.expect(res => {
+					assert(gjVal.isGeoJSONObject(res.body), 'Response is Not GeoJSON.');
+					assert(gjVal.isLineString(res.body.geometry, 'Feature is not Valid.'));	
+					//console.log("..:: Updated Percurso ::..")
+					//console.log(res.body);
+				}).expect(200,done);
+		});
 	});
 	describe('DELETE /percursos/:cod', function () {
 		it('Delete a Resource Specified, Status 204', function(done){
 			request.del("/api/percursos/"+cod_percurso).expect(204, done);
 		});
-	})
+	});
 });
