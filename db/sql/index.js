@@ -43,6 +43,7 @@ module.exports = {
 	percursos: {
 		find: sql('percursos/find.sql'),
         findOne: sql('percursos/findOne.sql'),
-        save: sql('percursos/save.sql')
+        save: sql('percursos/save.sql'),
+        remove: sql('percursos/remove.sql')
     },
 };

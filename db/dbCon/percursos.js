@@ -20,5 +20,8 @@ module.exports = {
 			res.locals.data = data;
 			return next();
 		}).catch(err => next(err));
+	},
+	remove: (req, res, next) => {
+		db.percursos.remove({cod_percurso:req.params.cod}).then(data => next()).catch(err => next(err))
 	}
 };

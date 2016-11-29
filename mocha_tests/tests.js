@@ -5,6 +5,7 @@ const request = supertest.agent("http://localhost:3000");
 const gjVal = require('geojson-validation');
 
 describe('Percursos EndPoints', function () {
+	let cod_percurso;
 	describe('GET / - Percursos', function() {
 		it('Response Status 200', function(done){
 			request.get("/api/percursos").expect(200, done);
@@ -78,11 +79,16 @@ describe('Percursos EndPoints', function () {
 				.expect('Location', /\/api\/percursos\/[A-Z0-9]*/)
 				.expect(res => {
 					assert(gjVal.isGeoJSONObject(res.body), 'Response is Not GeoJSON.');
-					assert(gjVal.isLineString(res.body.geometry, 'Feature is not Valid.'));		
+					assert(gjVal.isLineString(res.body.geometry, 'Feature is not Valid.'));	
+					cod_percurso = res.body.properties.cod_percurso;
 					console.log("..:: Returned Percurso ::..")
 					console.log(res.body);
 				}).expect(201, done);
-		});
-		
+		});	
 	});
+	describe('DELETE /percursos/:cod', function () {
+		it('Delete a Resource Specified, Status 204', function(done){
+			request.del("/api/percursos/"+cod_percurso).expect(204, done);
+		});
+	})
 });

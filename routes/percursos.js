@@ -13,5 +13,7 @@ router.get('/:cod', db_percursos.findOne, geojson.parseGeoJSON, geojson.isLineSt
 router.post('/', geojson.isLineString, db_percursos.save, geojson.parseGeoJSON, (req, res, next) => {
 	res.status(201).location(req.baseUrl+req.path+"/"+res.locals.data.properties.cod_percurso).json(res.locals.data);
 });
-
+router.delete('/:cod', db_percursos.remove, (req, res, next) => {
+	res.sendStatus(204);
+})
 module.exports = router;
