@@ -12,5 +12,13 @@ module.exports = {
 			res.locals.data = data;
 			return next();
 		}).catch(err => next(err));
+	},
+	save: (req, res, next) => {
+		let qObj = req.body.properties;
+		qObj.geometry = req.body.geometry;
+		db.percursos.save(qObj).then(data => {
+			res.locals.data = data;
+			return next();
+		}).catch(err => next(err));
 	}
 };

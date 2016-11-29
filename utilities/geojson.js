@@ -8,16 +8,17 @@ module.exports = {
 		next();
 	},
 	isLineString: (req, res, next) => {
-		gjval.isGeoJSONObject(res.locals.data, function(valid, err){
+		let data = res.locals.data || req.body;
+		gjval.isGeoJSONObject(data, function(valid, err){
 			if(!valid) return next(err);
-			if(res.locals.data.hasOwnProperty('features')){
-				for(let feature of res.locals.data.features){
+			if(data.hasOwnProperty('features')){
+				for(let feature of data.features){
 					gjval.isLineString(feature.geometry, function(valid, err){
 						if(!valid) return next(err);
 					});	
 				}
 			}else{
-				gjval.isLineString(res.locals.data.geometry, function(valid, err){
+				gjval.isLineString(data.geometry, function(valid, err){
 					if(!valid) return next(err);
 				});
 			}
