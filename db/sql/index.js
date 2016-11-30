@@ -47,4 +47,7 @@ module.exports = {
         update: sql('percursos/update.sql'),
         remove: sql('percursos/remove.sql')
     },
+    utilizadores: {
+        find: sql('utilizadores/find.sql')
+    }
 };
