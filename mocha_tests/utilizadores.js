@@ -5,6 +5,11 @@ const request = supertest.agent("http://localhost:3000");
 
 var UtilizadoresTests = module.exports = () => {
 	describe('Percursos EndPoints', function () {
+		let utilizador = {
+			username: 'NewUser',
+			password: 'HelloDarkness',
+			email: '10gramasdefiambre@comidas.pt'
+		};
 		describe('GET / - Utilizadores', function () {
 			it('Response Status 200', function(done){
 				request.get("/api/utilizadores").expect(200, done);
@@ -40,12 +45,7 @@ var UtilizadoresTests = module.exports = () => {
 				}).expect(200,done);
 			});
 		});
-		describe('POST / - Utilizadores', function(){
-			let utilizador = {
-				username: 'NewUser',
-				password: 'HelloDarkness',
-				email: '10gramasdefiambre@comidas.pt'
-			};
+		describe('POST / - Utilizadores', function(){		
 			it('Return Location and Resource', function(done){
 				request.post("/api/utilizadores").send(utilizador)
 					.expect('Location', /\/api\/utilizadores\/[0-9]*/)
@@ -57,6 +57,19 @@ var UtilizadoresTests = module.exports = () => {
 						assert.deepEqual(utilizador, res.body, 'Utilizador foi criado incorrectamente.');
 					}).expect(201, done);
 			});	
+		});
+		describe('PUT /:id - Utilizadores', function(){
+			it('Update the Resource', function(done){
+				utilizador.password = "NovaPassword";
+				utilizador.email = "20gramasdequeijo@comida.com";
+				request.put("/api/utilizadores/"+utilizador.id_utilizador).send(utilizador)
+					.expect(res => {
+						delete utilizador.password;
+						assert.deepEqual(res.body, utilizador);
+						console.log("..:: Updated Utilizador ::..")
+						console.log(res.body);
+					}).expect(200,done);
+			});
 		});
 	});
 }	

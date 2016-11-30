@@ -15,21 +15,23 @@ module.exports = {
 		}).catch(err =>  next(err));
 	},
 	save: (req, res, next) => {
-		let user = req.body;
-		let qObj = {username:user.username, email:user.email};
-		qObj.password = passHash.generate(user.password);
-		console.log("1quilodesabao");
-		console.log(passHash.generate("1quilodesabao"));
-		console.log("2quilosdesabao");
-		console.log(passHash.generate("2quilosdesabao"));
-		console.log("3quilosdesabao");
-		console.log(passHash.generate("3quilosdesabao"));
-		console.log("4quilosdesabao");
-		console.log(passHash.generate("4quilosdesabao"));
-		db.utilizadores.save(qObj).then(data => {
+		db.utilizadores.save(_getUser(req.body, null)).then(data => {
+			res.locals.data = data;
+			return next();
+		}).catch(err => next(err));
+	},
+	update: (req, res, next) => {
+		db.utilizadores.update(_getUser(req.body, req.params.id)).then(data => {
 			res.locals.data = data;
 			return next();
 		}).catch(err => next(err));
 	}
 
+};
+
+function _getUser(data, id){
+	let user = {username: data.username, email: data.email};
+	user.id_utilizador = id || 0;
+	user.password = passHash.generate(data.password);
+	return user;
 };

@@ -4,6 +4,7 @@ module.exports = (rep, pgp) => {
   return {
     find: values => rep.manyOrNone(sql.find, values),
     findOne: values => rep.oneOrNone(sql.findOne, values),
-    save: values => rep.one(sql.save, values, utilizador => utilizador)
+    save: values => rep.one(sql.save, values, utilizador => utilizador),
+    update: values => rep.one(sql.update, values, utilizador => utilizador)
   };
 };
