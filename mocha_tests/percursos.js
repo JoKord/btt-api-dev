@@ -4,7 +4,7 @@ const supertest = require('supertest');
 const request = supertest.agent("http://localhost:3000");
 const gjVal = require('geojson-validation');
 
-var PercursosTests = module.exports = () => {
+let PercursosTests = module.exports = () => {
 	describe('Percursos EndPoints', function () {
 		let cod_percurso;
 		let percurso = {

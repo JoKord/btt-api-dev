@@ -3,7 +3,7 @@ const assert = require('assert');
 const supertest = require('supertest');
 const request = supertest.agent("http://localhost:3000");
 
-var UtilizadoresTests = module.exports = () => {
+let UtilizadoresTests = module.exports = () => {
 	describe('Percursos EndPoints', function () {
 		let utilizador = {
 			username: 'NewUser',

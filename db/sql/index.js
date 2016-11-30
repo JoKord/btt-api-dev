@@ -53,5 +53,8 @@ module.exports = {
         save: sql('utilizadores/save.sql'),
         update: sql('utilizadores/update.sql'),
         remove: sql('utilizadores/remove.sql')
+    },
+    ratings: {
+        find: sql('ratings/find.sql')
     }
 };

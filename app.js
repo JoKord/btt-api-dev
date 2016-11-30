@@ -23,10 +23,12 @@ const qrec = pgp.errors.queryResultErrorCode;
 const index = require('./routes/index');
 const percursos = require('./routes/percursos');
 const utilizadores = require('./routes/utilizadores');
+const ratings = require('./routes/ratings');
 
 app.use('/', index);
 app.use('/api/percursos', percursos);
 app.use('/api/utilizadores', utilizadores);
+app.use('/api/ratings', ratings);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -7,7 +7,8 @@ var promise = require('bluebird');
 // because event 'extend' is called multiple times:
 var repos = {
     percursos: require('./repos/percursos'),
-    utilizadores: require('./repos/utilizadores')
+    utilizadores: require('./repos/utilizadores'),
+    ratings: require('./repos/ratings')
 };
 // pg-promise initialization options:
 var options = {
@@ -21,6 +22,7 @@ var options = {
         //    for example, to access namespaces `.as` or `.helpers`
         obj.percursos = repos.percursos(obj, pgp);
         obj.utilizadores = repos.utilizadores(obj, pgp);
+        obj.ratings = repos.ratings(obj, pgp);
     }
 };
 // Database connection parameters:
