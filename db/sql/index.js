@@ -48,6 +48,7 @@ module.exports = {
         remove: sql('percursos/remove.sql')
     },
     utilizadores: {
-        find: sql('utilizadores/find.sql')
+        find: sql('utilizadores/find.sql'),
+        findOne: sql('utilizadores/findOne.sql')
     }
 };
