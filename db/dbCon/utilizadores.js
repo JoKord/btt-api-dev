@@ -25,10 +25,11 @@ module.exports = {
 			res.locals.data = data;
 			return next();
 		}).catch(err => next(err));
+	},
+	remove: (req, res, next) => {
+		db.utilizadores.remove({id:req.params.id}).then(data => next()).catch(err => next(err));
 	}
-
 };
-
 function _getUser(data, id){
 	let user = {username: data.username, email: data.email};
 	user.id_utilizador = id || 0;

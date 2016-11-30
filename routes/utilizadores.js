@@ -15,6 +15,7 @@ router.post('/', db_utilizadores.save, (req, res) => {
 router.put('/:id', db_utilizadores.update, (req, res) => {
 	res.status(200).json(res.locals.data);
 });
-router.delete('/:cod');
-
+router.delete('/:id', db_utilizadores.remove, (req, res) => {
+	res.sendStatus(204);
+});
 module.exports = router;

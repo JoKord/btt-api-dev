@@ -71,5 +71,10 @@ var UtilizadoresTests = module.exports = () => {
 					}).expect(200,done);
 			});
 		});
+		describe('DELETE /:id - Utilizadores', function(){
+			it('Delete a Resource Specified, Status 204', function(done){
+				request.del("/api/utilizadores/"+utilizador.id_utilizador).expect(204, done);
+			});
+		});
 	});
 }	
