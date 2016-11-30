@@ -40,5 +40,23 @@ var UtilizadoresTests = module.exports = () => {
 				}).expect(200,done);
 			});
 		});
+		describe('POST / - Utilizadores', function(){
+			let utilizador = {
+				username: 'NewUser',
+				password: 'HelloDarkness',
+				email: '10gramasdefiambre@comidas.pt'
+			};
+			it('Return Location and Resource', function(done){
+				request.post("/api/utilizadores").send(utilizador)
+					.expect('Location', /\/api\/utilizadores\/[0-9]*/)
+					.expect(res => {
+						delete utilizador.password;
+						utilizador.id_utilizador = res.body.id_utilizador;
+						console.log("..:: Returned Utilizador ::..")
+						console.log(res.body);
+						assert.deepEqual(utilizador, res.body, 'Utilizador foi criado incorrectamente.');
+					}).expect(201, done);
+			});	
+		});
 	});
 }	

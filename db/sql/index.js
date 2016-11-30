@@ -49,6 +49,7 @@ module.exports = {
     },
     utilizadores: {
         find: sql('utilizadores/find.sql'),
-        findOne: sql('utilizadores/findOne.sql')
+        findOne: sql('utilizadores/findOne.sql'),
+        save: sql('utilizadores/save.sql')
     }
 };

@@ -9,7 +9,9 @@ router.get('/', db_utilizadores.find, (req, res) => {
 router.get('/:id', db_utilizadores.findOne, (req, res) => {
 	res.status(200).json(res.locals.data);
 });
-router.post('/');
+router.post('/', db_utilizadores.save, (req, res) => {
+	res.status(201).location(req.baseUrl+req.path+"/"+res.locals.data.id_utilizador).json(res.locals.data);
+});
 router.put('/:cod');
 router.delete('/:cod');
 
