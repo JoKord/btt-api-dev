@@ -19,16 +19,13 @@ module.exports = {
 			return next();
 		}).catch(err => next(err));
 	},
-	/*update: (req, res, next) => {
-		let qObj = req.body.properties;
-		qObj.geometry = req.body.geometry;
-		qObj.cod_percurso = req.params.cod;
-		db.ratings.update(qObj).then(data => {
+	update: (req, res, next) => {
+		db.ratings.update(req.body).then(data => {
 			res.locals.data = data;
 			return next();
 		}).catch(err => next(err));
 	},
 	remove: (req, res, next) => {
-		db.ratings.remove({cod_percurso:req.params.cod}).then(data => next()).catch(err => next(err));
-	}*/
+		db.ratings.remove({id_rating:req.params.id}).then(data => next()).catch(err => next(err));
+	}
 };

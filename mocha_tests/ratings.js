@@ -29,14 +29,16 @@ let RatingsTests = module.exports = () => {
 			it('Correct Result', function(done){
 				request.get("/api/ratings/1").expect(res => {
 					res.body.cod_percurso = "DNVEDVP7ER9I";
-					res.body.data_insercao = "2016-11-28T00:00:00.000Z";
+					res.body.data_insercao = "DATE()";
+					res.body.ultima_alteracao = "DATE()"
 					assert.deepEqual(res.body, 
 						{ 
 							"id_rating": 1,
 							"cod_percurso": "DNVEDVP7ER9I",
         					"comentario": "Excelente!",
         					"criado_por": "User1",
-        					"data_insercao": "2016-11-28T00:00:00.000Z",
+        					"data_insercao": "DATE()",
+        					"ultima_alteracao": "DATE()",
         					"n_estrelas": 5,
         					"nome_percurso": "PercurosoTeste1"
 				    	}, 'Rating não é o Correcto.'
@@ -57,11 +59,29 @@ let RatingsTests = module.exports = () => {
 					.expect(res => {
 						rating.id_rating = res.body.id_rating;
 						rating.data_insercao = res.body.data_insercao;
+						rating.ultima_alteracao = res.body.ultima_alteracao;
 						console.log("..:: Returned Rating ::..")
 						console.log(res.body);
 						assert.deepEqual(rating, res.body, 'Rating foi criado incorrectamente.');
 					}).expect(201, done);
 			});	
+		});	
+		describe('PUT /:id - Ratings', function(){
+			it('Update the Resource', function(done){
+				rating.n_estrelas = 4;
+				rating.comentario = "Meh!++";
+				request.put("/api/ratings/"+rating.id_rating).send(rating)
+					.expect(res => {
+						assert.deepEqual(res.body, rating);
+						console.log("..:: Updated Rating ::..")
+						console.log(res.body);
+					}).expect(200,done);
+			});
+		});	
+		describe('DELETE /:id - Ratings', function(){
+			it('Delete a Resource Specified, Status 204', function(done){
+				request.del("/api/ratings/"+rating.id_rating).expect(204, done);
+			});
 		});
 	});
 }	

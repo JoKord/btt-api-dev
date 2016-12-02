@@ -19,6 +19,6 @@ DELETE /api/utilizadores/:id - Apagar um Utilizador a partir do seu código
 # Ratings * /api/ratings
 GET /api/ratings - Obter todos os Ratings 
 GET /api/ratings/:id - Obter um Rating a partir do seu código
-POST /api/ratings - Adicionar Rating - TODO
-PUT /api/ratings/:id - Alterar um Rating a partir do seu código - TODO
+POST /api/ratings - Adicionar Rating
+PUT /api/ratings/:id - Alterar um Rating a partir do seu código
 DELETE /api/ratings/:id - Apagar um Rating a partir do seu código - TODO
