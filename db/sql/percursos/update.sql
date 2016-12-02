@@ -4,7 +4,8 @@ SET
 geom = (ST_SetSRID(ST_GeomFromGeoJSON(${geometry}),4326)), 
 nome = ${nome}, 
 descricao = ${descricao}, 
-id_utilizador = ${id_utilizador}
+id_utilizador = ${id_utilizador},
+ultima_alteracao = now()
 WHERE cod_percurso = ${cod_percurso}
 RETURNING 
 cod_percurso, 

@@ -59,6 +59,11 @@ let PercursosTests = module.exports = () => {
 					}
 				}).expect(200, done);
 			});
+			it('Print The Percursos', function(done){
+				request.get("/api/percursos").expect(res => {
+					//console.log(res.body);
+				}).expect(200,done);
+			});
 		});		
 		describe('POST / - Percursos', function() {
 			it('Return Location and Resource as GeoJSON', function(done){
@@ -85,6 +90,11 @@ let PercursosTests = module.exports = () => {
 					assert(gjVal.isGeoJSONObject(res.body), 'Response is Not GeoJSON.');
 					assert(gjVal.isLineString(res.body.geometry, 'Feature is not Valid.'));			
 				}).expect(200, done);
+			});
+			it('Print The Percurso', function(done){
+				request.get("/api/percursos/"+cod_percurso).expect(res => {
+					//console.log(res.body);
+				}).expect(200,done);
 			});
 			it('ERROR in cod_percurso', function(done){
 				request.get("/api/percursos/EXAMPLECODE").expect(res => {

@@ -7,6 +7,7 @@ CREATE TABLE percursos (
     nome character varying(128) NOT NULL,
     descricao text,
     data_criacao date DEFAULT now() NOT NULL,
+    ultima_alteracao date DEFAULT now() NOT NULL,
     id_utilizador integer NOT NULL,
     rating_medio real DEFAULT 0.0 NOT NULL,
     comprimento_real real NOT NULL, 
@@ -33,7 +34,7 @@ CREATE TABLE ratings (
     comentario text NOT NULL,
     id_utilizador integer NOT NULL,
     id_percurso integer NOT NULL,
-    data_insercao date DEFAULT now() NOT NULL,
+    data_criacao date DEFAULT now() NOT NULL,
     ultima_alteracao date DEFAULT now() NOT NULL,
     CONSTRAINT "CHK_Ratings_n_estrelas" CHECK (((n_estrelas >= 0) AND (n_estrelas <= 5)))
 );
@@ -54,7 +55,8 @@ CREATE TABLE utilizadores (
     username character varying(45) NOT NULL,
     password character varying(56) NOT NULL,
     email character varying(100) NOT NULL,
-    data_criacao date DEFAULT now() NOT NULL
+    data_criacao date DEFAULT now() NOT NULL,
+    ultima_alteracao date DEFAULT now() NOT NULL
 );
 ALTER TABLE utilizadores OWNER TO :owner;
 -- CREATE UTILIZADORES SEQUENCE

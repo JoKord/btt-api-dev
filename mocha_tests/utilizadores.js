@@ -15,7 +15,8 @@ let UtilizadoresTests = module.exports = () => {
 			username: 'User1',
 			email: 'User1@gmail.com',
 			data_criacao: 'DATE()',
-			percursos_criados: '2'
+			percursos_criados: '2',
+			ultima_alteracao: 'DATE()'
 		};
 		describe('GET / - Utilizadores', function () {
 			it('Response Status 200', function(done){
@@ -45,6 +46,7 @@ let UtilizadoresTests = module.exports = () => {
 			it('Correct Result', function(done){
 				request.get("/api/utilizadores/1").expect(res => {
 					utilizador.data_criacao = res.body.data_criacao;
+					utilizador.ultima_alteracao = res.body.ultima_alteracao;
 					assert.deepEqual(res.body, 
 						utilizador, 'Utilizador não é o Correcto.'
 				    );

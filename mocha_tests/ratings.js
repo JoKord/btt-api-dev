@@ -14,7 +14,7 @@ let RatingsTests = module.exports = () => {
 			});
 			it('Print The Ratings', function(done){
 				request.get("/api/ratings").expect(res => {
-					//console.log(res.body);;
+					//console.log(res.body);
 				}).expect(200,done);
 			});
 		});
@@ -33,7 +33,7 @@ let RatingsTests = module.exports = () => {
 			it('Correct Result', function(done){
 				request.get("/api/ratings/1").expect(res => {
 					res.body.cod_percurso = "DNVEDVP7ER9I";
-					res.body.data_insercao = "DATE()";
+					res.body.data_criacao = "DATE()";
 					res.body.ultima_alteracao = "DATE()"
 					assert.deepEqual(res.body, 
 						{ 
@@ -41,7 +41,7 @@ let RatingsTests = module.exports = () => {
 							"cod_percurso": "DNVEDVP7ER9I",
         					"comentario": "Excelente!",
         					"criado_por": "User1",
-        					"data_insercao": "DATE()",
+        					"data_criacao": "DATE()",
         					"ultima_alteracao": "DATE()",
         					"n_estrelas": 5,
         					"nome_percurso": "PercursoTeste1"
@@ -62,7 +62,7 @@ let RatingsTests = module.exports = () => {
 					.expect('Location', /\/api\/ratings\/[0-9]*/)
 					.expect(res => {
 						rating.id_rating = res.body.id_rating;
-						rating.data_insercao = res.body.data_insercao;
+						rating.data_criacao = res.body.data_criacao;
 						rating.ultima_alteracao = res.body.ultima_alteracao;
 						//console.log("..:: Returned Rating ::..")
 						//console.log(res.body);
