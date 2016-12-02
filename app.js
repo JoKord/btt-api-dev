@@ -46,8 +46,7 @@ if (app.get('env') === 'development') {
       console.log(err);
       if(err.code == qrec.noData){
         res.status(500);
-        res.render('error', {
-          message: "Nao foi devolvido nada.",
+        res.json({
           error: "QREC.noData"
         });
       }

@@ -4,10 +4,10 @@ const utilizadores = require('./utilizadores');
 const ratings = require('./ratings');
 
 /* Percursos EndPoints Tests */
-//percursos();
+percursos();
 
 /* Utilizadores EndPoints Tests */
-//utilizadores();
+utilizadores();
 
 /* Ratings EndPoints Tests */
 ratings();

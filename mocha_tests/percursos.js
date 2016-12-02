@@ -40,7 +40,7 @@ let PercursosTests = module.exports = () => {
 	   				{ 
 	   					nome: 'PercurosoTeste1',
 	     				descricao: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, \n\tsed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n\tUt enim ad minim veniam, quis nostrud exercitation ullamco laboris \n\tnisi ut aliquip ex ea commodo consequat. \n\tDuis aute irure dolor in reprehenderit in voluptate velit esse cillum \n\tdolore eu fugiat nulla pariatur. \n\tExcepteur sint occaecat cupidatat non proident, sunt in culpa qui \n\tofficia deserunt mollit anim id est laborum.',
-	     				id_utilizador: 1 // TODO - Automático
+	     				id_utilizador: 1
 	     			} 
 	     		};
 		describe('GET / - Percursos', function() {
@@ -59,21 +59,7 @@ let PercursosTests = module.exports = () => {
 					}
 				}).expect(200, done);
 			});
-		});
-		describe('GET /:cod - Percursos', function(){
-			it('Response Status 200', function(done){
-				request.get("/api/percursos/DNVEDVP7ER9I").expect(200, done);
-			});
-			it('Response Type JSON', function(done){
-				request.get("/api/percursos/DNVEDVP7ER9I").expect('Content-Type', /json/).expect(200, done);
-			});
-			it('Is GeoJSON and LineString', function(done){
-				request.get("/api/percursos/DNVEDVP7ER9I").expect(res => {
-					assert(gjVal.isGeoJSONObject(res.body), 'Response is Not GeoJSON.');
-					assert(gjVal.isLineString(res.body.geometry, 'Feature is not Valid.'));			
-				}).expect(200, done);
-			});
-		});
+		});		
 		describe('POST / - Percursos', function() {
 			it('Return Location and Resource as GeoJSON', function(done){
 				request.post("/api/percursos").send(percurso)
@@ -86,6 +72,25 @@ let PercursosTests = module.exports = () => {
 						//console.log(res.body);
 					}).expect(201, done);
 			});	
+		});
+		describe('GET /:cod - Percursos', function(){
+			it('Response Status 200', function(done){
+				request.get("/api/percursos/"+cod_percurso).expect(200, done);
+			});
+			it('Response Type JSON', function(done){
+				request.get("/api/percursos/"+cod_percurso).expect('Content-Type', /json/).expect(200, done);
+			});
+			it('Is GeoJSON and LineString', function(done){
+				request.get("/api/percursos/"+cod_percurso).expect(res => {
+					assert(gjVal.isGeoJSONObject(res.body), 'Response is Not GeoJSON.');
+					assert(gjVal.isLineString(res.body.geometry, 'Feature is not Valid.'));			
+				}).expect(200, done);
+			});
+			it('ERROR in cod_percurso', function(done){
+				request.get("/api/percursos/EXAMPLECODE").expect(res => {
+					assert.deepEqual(res.body,{error:"QREC.noData"});
+				}).expect(500, done);
+			});
 		});
 		describe('PUT /percursos/:cod', function () {
 			it('Update the Resource', function(done){

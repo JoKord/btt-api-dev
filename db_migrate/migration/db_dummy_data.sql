@@ -44,7 +44,7 @@ VALUES (
 			ST_MakePoint(-7.7438649396136, 41.2987410075502),
 			ST_MakePoint(-7.74404518405938, 41.2987221524613)])
 		,4326), 
-	'PercurosoTeste1', 
+	'PercursoTeste1', 
 	'Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
 	sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 	Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
@@ -78,7 +78,7 @@ VALUES (
 			ST_MakePoint(-7.74154457757113, 41.3000471377201),
 			ST_MakePoint(-7.7413985567543, 41.3003213874513)])
 		,4326), 
-	'PercurosoTeste2', 
+	'PercursoTeste2', 
 	'Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
 	sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 	Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
@@ -130,7 +130,7 @@ VALUES (
 			ST_MakePoint(-7.72182264099783, 41.3091276187951),
 			ST_MakePoint(-7.72129331553681, 41.3094155408853)])
 		,4326), 
-	'PercurosoTeste3', 
+	'PercursoTeste3', 
 	'Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
 	sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 	Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
@@ -254,7 +254,7 @@ VALUES (
 			ST_MakePoint(-7.71628297625928, 41.3771172990766),
 			ST_MakePoint(-7.71677579651609, 41.3773227432305)])
 		,4326), 
-	'PercurosoTeste4', 
+	'PercursoTeste4', 
 	'Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
 	sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 	Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
@@ -264,6 +264,43 @@ VALUES (
 	Excepteur sint occaecat cupidatat non proident, sunt in culpa qui 
 	officia deserunt mollit anim id est laborum.', 
 	4);
+
+INSERT INTO percursos(geom, nome, descricao, id_utilizador)
+VALUES (
+	ST_SetSRID(
+		ST_MakeLine(ARRAY[	
+			ST_MakePoint(-7.74401324200568, 41.2961235262365),
+			ST_MakePoint(-7.74384896858675, 41.2970011741126),
+			ST_MakePoint(-7.74359343215729, 41.2973302890216),
+			ST_MakePoint(-7.74257128643948, 41.297645689251),
+			ST_MakePoint(-7.74165865633429, 41.2980159397482),
+			ST_MakePoint(-7.74161986955482, 41.2980313668066),
+			ST_MakePoint(-7.74194385324216, 41.2981205008506),
+			ST_MakePoint(-7.74256444171369, 41.2983296225525),
+			ST_MakePoint(-7.74265114157369, 41.2983639047348),
+			ST_MakePoint(-7.74236366309055, 41.2986210205273),
+			ST_MakePoint(-7.74199861104847, 41.298980980934),
+			ST_MakePoint(-7.74184346393059, 41.2992552351485),
+			ST_MakePoint(-7.74178870612428, 41.2994129307996),
+			ST_MakePoint(-7.74199861104847, 41.2994129307996),
+			ST_MakePoint(-7.74242754719791, 41.2990426882328),
+			ST_MakePoint(-7.74280172554104, 41.2988095714643),
+			ST_MakePoint(-7.7430755145726, 41.2986175923234),
+			ST_MakePoint(-7.74358658743151, 41.2987478639449),
+			ST_MakePoint(-7.74371663722151, 41.2987581485355),
+			ST_MakePoint(-7.7438649396136, 41.2987410075502),
+			ST_MakePoint(-7.74404518405938, 41.2987221524613)])
+		,4326), 
+	'PercursoTeste5', 
+	'Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+	sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+	Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+	nisi ut aliquip ex ea commodo consequat. 
+	Duis aute irure dolor in reprehenderit in voluptate velit esse cillum 
+	dolore eu fugiat nulla pariatur. 
+	Excepteur sint occaecat cupidatat non proident, sunt in culpa qui 
+	officia deserunt mollit anim id est laborum.', 
+	1);
 
 \echo ' -- DONE INSERTING PERCURSOS -- '
 

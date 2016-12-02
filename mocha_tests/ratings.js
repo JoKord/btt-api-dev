@@ -13,7 +13,9 @@ let RatingsTests = module.exports = () => {
 				request.get("/api/ratings").expect('Content-Type', /json/).expect(200, done);
 			});
 			it('Print The Ratings', function(done){
-				request.get("/api/ratings").expect(res => {console.log(res.body)}).expect(200,done);
+				request.get("/api/ratings").expect(res => {
+					//console.log(res.body);;
+				}).expect(200,done);
 			});
 		});
 		describe('GET /:id - Ratings', function () {
@@ -24,7 +26,9 @@ let RatingsTests = module.exports = () => {
 				request.get("/api/ratings/1").expect('Content-Type', /json/).expect(200, done);
 			});
 			it('Print The Rating', function(done){
-				request.get("/api/ratings/1").expect(res => {console.log(res.body)}).expect(200,done);
+				request.get("/api/ratings/1").expect(res => {
+					//console.log(res.body);
+				}).expect(200,done);
 			});
 			it('Correct Result', function(done){
 				request.get("/api/ratings/1").expect(res => {
@@ -40,7 +44,7 @@ let RatingsTests = module.exports = () => {
         					"data_insercao": "DATE()",
         					"ultima_alteracao": "DATE()",
         					"n_estrelas": 5,
-        					"nome_percurso": "PercurosoTeste1"
+        					"nome_percurso": "PercursoTeste1"
 				    	}, 'Rating não é o Correcto.'
 				    );
 				}).expect(200,done);
@@ -60,8 +64,8 @@ let RatingsTests = module.exports = () => {
 						rating.id_rating = res.body.id_rating;
 						rating.data_insercao = res.body.data_insercao;
 						rating.ultima_alteracao = res.body.ultima_alteracao;
-						console.log("..:: Returned Rating ::..")
-						console.log(res.body);
+						//console.log("..:: Returned Rating ::..")
+						//console.log(res.body);
 						assert.deepEqual(rating, res.body, 'Rating foi criado incorrectamente.');
 					}).expect(201, done);
 			});	
@@ -73,8 +77,8 @@ let RatingsTests = module.exports = () => {
 				request.put("/api/ratings/"+rating.id_rating).send(rating)
 					.expect(res => {
 						assert.deepEqual(res.body, rating);
-						console.log("..:: Updated Rating ::..")
-						console.log(res.body);
+						//console.log("..:: Updated Rating ::..")
+						//console.log(res.body);
 					}).expect(200,done);
 			});
 		});	
