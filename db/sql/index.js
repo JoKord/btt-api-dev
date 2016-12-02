@@ -55,6 +55,8 @@ module.exports = {
         remove: sql('utilizadores/remove.sql')
     },
     ratings: {
-        find: sql('ratings/find.sql')
+        find: sql('ratings/find.sql'),
+        findOne: sql('ratings/findOne.sql'),
+        
     }
 };

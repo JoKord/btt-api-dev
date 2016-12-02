@@ -7,13 +7,13 @@ module.exports = {
 			return next();
 		}).catch(err => next(err));	
 	},
-	/*
 	findOne: (req, res, next) => {
-		db.ratings.findOne({cod_percurso:req.params.cod}).then(data => {
+		db.ratings.findOne({id_rating:req.params.id}).then(data => {
 			res.locals.data = data;
 			return next();
 		}).catch(err => next(err));
 	},
+	/*
 	save: (req, res, next) => {
 		let qObj = req.body.properties;
 		qObj.geometry = req.body.geometry;
