@@ -13,16 +13,13 @@ module.exports = {
 			return next();
 		}).catch(err => next(err));
 	},
-	/*
 	save: (req, res, next) => {
-		let qObj = req.body.properties;
-		qObj.geometry = req.body.geometry;
-		db.ratings.save(qObj).then(data => {
+		db.ratings.save(req.body).then(data => {
 			res.locals.data = data;
 			return next();
 		}).catch(err => next(err));
 	},
-	update: (req, res, next) => {
+	/*update: (req, res, next) => {
 		let qObj = req.body.properties;
 		qObj.geometry = req.body.geometry;
 		qObj.cod_percurso = req.params.cod;

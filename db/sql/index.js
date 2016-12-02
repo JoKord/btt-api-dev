@@ -57,6 +57,6 @@ module.exports = {
     ratings: {
         find: sql('ratings/find.sql'),
         findOne: sql('ratings/findOne.sql'),
-        
+        save: sql('ratings/save.sql')
     }
 };

@@ -44,5 +44,24 @@ let RatingsTests = module.exports = () => {
 				}).expect(200,done);
 			});
 		});
+		let rating = {
+			"id_utilizador": 1,
+			"id_percurso": 4,
+			"comentario": "Meh!",
+			"n_estrelas": 3
+		};
+		describe('POST / - Ratings', function(){		
+			it('Return Location and Resource', function(done){
+				request.post("/api/ratings").send(rating)
+					.expect('Location', /\/api\/ratings\/[0-9]*/)
+					.expect(res => {
+						rating.id_rating = res.body.id_rating;
+						rating.data_insercao = res.body.data_insercao;
+						console.log("..:: Returned Rating ::..")
+						console.log(res.body);
+						assert.deepEqual(rating, res.body, 'Rating foi criado incorrectamente.');
+					}).expect(201, done);
+			});	
+		});
 	});
 }	
