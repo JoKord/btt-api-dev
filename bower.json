@@ -1,0 +1,21 @@
+{
+  "name": "btt",
+  "description": "btt-api-dev",
+  "main": "",
+  "authors": [
+    "JoKord <jtpcordeiro@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/JoKord/btt-api-dev",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-google-maps": "^2.4.0"
+  }
+}
