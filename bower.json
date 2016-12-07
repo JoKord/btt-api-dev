@@ -16,6 +16,8 @@
     "tests"
   ],
   "dependencies": {
-    "angular-google-maps": "^2.4.0"
+    "angular-google-maps": "^2.4.0",
+    "bootstrap": "^3.3.7",
+    "bootstrap-css": "^3.3.6"
   }
 }

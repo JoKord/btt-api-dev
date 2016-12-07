@@ -19,10 +19,15 @@
     "morgan": "~1.7.0",
     "password-hash": "^1.2.2",
     "pg-promise": "^5.4.4",
+    "pug": "^2.0.0-beta6",
     "serve-favicon": "~2.3.0"
   },
   "devDependencies": {
     "grunt": "^1.0.1",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-jshint": "^1.1.0",
+    "grunt-contrib-uglify": "^2.0.0",
+    "grunt-contrib-watch": "^1.0.0",
     "supertest": "^2.0.1"
   }
 }

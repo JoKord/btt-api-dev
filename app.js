@@ -15,6 +15,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.set('views', './views');
+app.set('view engine', 'pug');
+
 // Postgres Promise Pacakage
 const pgp = require('./db').pgp;
 const QueryResultError = pgp.errors.QueryResultError;
@@ -25,7 +28,10 @@ const percursos = require('./routes/percursos');
 const utilizadores = require('./routes/utilizadores');
 const ratings = require('./routes/ratings');
 
+// Routes
 app.use('/', index);
+
+// API
 app.use('/api/percursos', percursos);
 app.use('/api/utilizadores', utilizadores);
 app.use('/api/ratings', ratings);
