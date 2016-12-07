@@ -11,8 +11,8 @@ per.descricao as descricao_percurso,
 per.rating_medio as rating,
 per.comprimento_st as comprimento,
 per.tempo_estimado_st as duracao_estimada,
-to_char(per.data_criacao, 'DD Mon YYYY - hh:mm') as data_criacao,
-to_char(per.ultima_alteracao, 'DD Mon YYYY - hh:mm') as ultima_alteracao, 
+to_char(per.data_criacao, 'DD Mon YYYY - HH24:MI') as data_criacao,
+to_char(per.ultima_alteracao, 'DD Mon YYYY - HH24:MI') as ultima_alteracao, 
 ut.username as criado_por  
 FROM :schema.percursos per
 INNER JOIN :schema.utilizadores ut 
@@ -29,8 +29,8 @@ p.descricao,
 p.rating_medio as rating,
 p.comprimento_st as comprimento,
 p.tempo_estimado_st as duracao,
-to_char(p.data_criacao, 'DD Mon YYYY - hh:mm') as data_criacao,
-to_char(p.ultima_alteracao, 'DD Mon YYYY - hh:mm') as ultima_alteracao, 
+to_char(p.data_criacao, 'DD Mon YYYY - HH24:MI') as data_criacao,
+to_char(p.ultima_alteracao, 'DD Mon YYYY - HH24:MI') as ultima_alteracao, 
 u.username as criado_por 
 FROM :schema.percursos p 
 INNER JOIN :schema.utilizadores u 
@@ -42,8 +42,8 @@ SELECT
 u.id_utilizador,
 u.username,
 u.email,
-to_char(u.data_criacao, 'DD Mon YYYY - hh:mm') as data_criacao,
-to_char(u.ultima_alteracao, 'DD Mon YYYY - hh:mm') as ultima_alteracao,
+to_char(u.data_criacao, 'DD Mon YYYY - HH24:MI') as data_criacao,
+to_char(u.ultima_alteracao, 'DD Mon YYYY - HH24:MI') as ultima_alteracao,
 (SELECT count(*) 
 	FROM :schema.percursos
 	WHERE id_utilizador = u.id_utilizador
@@ -57,8 +57,8 @@ SELECT
 r.id_rating,
 r.n_estrelas,
 r.comentario,
-to_char(r.data_criacao, 'DD Mon YYYY - hh:mm') as data_criacao,
-to_char(r.ultima_alteracao, 'DD Mon YYYY - hh:mm') as ultima_alteracao,
+to_char(r.data_criacao, 'DD Mon YYYY - HH24:MI') as data_criacao,
+to_char(r.ultima_alteracao, 'DD Mon YYYY - HH24:MI') as ultima_alteracao,
 u.username as criado_por,
 p.cod_percurso,
 p.nome as nome_percurso
